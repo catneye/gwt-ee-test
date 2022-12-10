@@ -1,0 +1,43 @@
+description = 'app-gwt'
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'war'
+
+dependencies {
+    //providedCompile project(':app-ejb')
+    implementation 'com.google.gwt:gwt-user:2.9.0'
+    //implementation 'org.fusesource.restygwt:restygwt:2.2.7'
+    //implementation 'com.github.nmorel.gwtjackson:gwt-jackson:0.15.4'
+}
+
+//apply plugin: 'gwt'
+apply plugin: "org.wisepersist.gwt"
+
+gwt {
+    gwtVersion='2.9.0'
+    modules 'com.catneye.Client'
+
+    //sourceSets {
+    //    main {
+    //        java {
+    //           srcDir 'src'
+    //       }
+    //   }
+    //}
+
+    logLevel = 'INFO'
+
+//    minHeapSize = "512M";
+//    maxHeapSize = "1024M";
+
+//    superDev {
+//        noPrecompile=true
+//   }
+
+//    eclipse{
+//        addGwtContainer=false
+//    }
+}

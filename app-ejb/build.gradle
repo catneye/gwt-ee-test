@@ -1,0 +1,35 @@
+description = 'app-ejb'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.hibernate:hibernate-core:5.2.18.Final"
+    implementation 'javax.ejb:javax.ejb-api:3.2.2'
+    implementation 'javax.jms:javax.jms-api:2.0.1'
+    implementation 'javax:javaee-web-api:8.0.1'
+    implementation 'javax:javaee-api:8.0'
+    implementation 'javax:javaee-api:8.0'
+    //implementation 'org.quartz-scheduler:quartz:2.3.2'
+    implementation 'org.flywaydb:flyway-core:9.8.3'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+}
+
+jar {
+  manifest {
+    attributes(
+      "Dependencies": "org.flywaydb")
+  }
+}
+
+apply plugin: "org.flywaydb.flyway"
+flyway {
+    url = 'jdbc:postgresql://127.0.0.1:5432/test'
+    user = 'test'
+    password = 'test'
+    //baseline = '1.0.0'
+    schemas = ['public']
+    //locations = ['classpath:flyway/db']
+    locations = ['filesystem:./flyway']
+}
